@@ -1,0 +1,21 @@
+<div class="container">
+
+  <!-- Content here -->
+  <div class="card my-card" style="width: 18rem;">
+    <h1><b>MY-SYS</b></h1>
+    <div class="form-group">
+      <label for="username">用户名：</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" [(ngModel)]="username">
+    </div>
+    <div class="form-group">
+      <label for="password">密码：</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码"
+             [(ngModel)]="password">
+    </div>
+    <div class="form-check my-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="doLogin()">登 录</button>
+  </div>
+</div>
