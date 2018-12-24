@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
 import {LoginService} from "../../service/login.service";
-import {ModelService} from "../../model/model.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private modelService: ModelService,
   ) {
   }
 
@@ -20,16 +18,7 @@ export class LoginComponent implements OnInit {
   password: string;
 
   doLogin(): void {
-    this.loginService.doLogin(this.username, this.password).then(req => {
-      console.log("login info", req);
-      if (req.code == 1) {
-        this.modelService.user.login = true;
-        this.loginService.getLoginUser(this.username).then(req=>{
-          console.log("user info", req.data);
-          this.modelService.user.data=req.data
-        })
-      }
-    });
+    this.loginService.doLogin(this.username, this.password)
   }
 
   ngOnInit() {

@@ -3,8 +3,8 @@ import {CommonModule} from '@angular/common';
 
 import {RouterModule} from "@angular/router";
 
-import {LoginComponent} from "./component/login/login.component";
-import {IndexComponent} from "./component/index/index.component";
+import {LoginComponent} from "./page/login/login.component";
+import {IndexComponent} from "./page/index/index.component";
 
 export const Router =
   [
