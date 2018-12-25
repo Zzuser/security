@@ -5,20 +5,32 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 
 import {LoginService} from "./service/login.service";
+import {ModelService} from "./model/model.service";
+import {httpInterceptorProviders} from "./http-interceptors";
 
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './page/login/login.component';
 import {IndexComponent} from './page/index/index.component';
-import {ModelService} from "./model/model.service";
-import {httpInterceptorProviders} from "./http-interceptors";
+import { HeaderComponent } from './component/header/header.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { HomeComponent } from './page/home/home.component';
+import { ProfileComponent } from './page/profile/profile.component';
+import { MessagesComponent } from './page/messages/messages.component';
+import { SettingsComponent } from './page/settings/settings.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        IndexComponent
+        IndexComponent,
+        HeaderComponent,
+        NavbarComponent,
+        HomeComponent,
+        ProfileComponent,
+        MessagesComponent,
+        SettingsComponent,
     ],
     imports: [
         BrowserModule,
