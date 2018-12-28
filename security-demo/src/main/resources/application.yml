@@ -1,15 +1,19 @@
+# 服务器端口
 server:
   port: 8080
 spring:
+  # 应用名称
   application:
     name: security-demo
+  # 数据源
   datasource:
     username: root
     password: root
     url: jdbc:mysql://localhost:3306/security?useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
+  # jpa配置
   jpa:
-    show-sql: true
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true #数据库操作时显示sql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #数据库平台
     hibernate:
-      ddl-auto: update
+      ddl-auto: update #数据库增量更新
