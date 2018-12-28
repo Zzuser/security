@@ -23,6 +23,8 @@ export class AuthService {
                 console.log("login info", res);
                 if (res["code"] == 1) {
                     this.getLoginUser()
+                }else {
+                    alert(res['msg'])
                 }
             })
     }

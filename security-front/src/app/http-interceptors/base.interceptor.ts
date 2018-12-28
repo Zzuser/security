@@ -43,6 +43,13 @@ export class BaseInterceptor implements HttpInterceptor {
         } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
+            console.log('error.name:',error.name);
+            console.log('error.message:',error.message);
+            console.log('error.error:',error.error);
+            console.log('error.ok:',error.ok);
+            if(error.error.status=='403'){
+                alert(error.error.error.toString()+":权限不足");
+            }
             console.error(
                 `Backend returned code ${error.status}, ` +
                 `body was: ${error.error}`);

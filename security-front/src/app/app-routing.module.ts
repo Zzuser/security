@@ -16,25 +16,32 @@ const appRoutes: Routes =
         {
             path: '',
             component: IndexComponent,
-            canActivate:[LoginGuard],
+            canActivate: [LoginGuard],
             children: [
-    { path: 'home',
-        component: HomeComponent
-    },
-    { path: 'profile',
-        component: ProfileComponent
-    },
-    { path: 'messages',
-        component: MessagesComponent
-    },
-    {
-        path: 'settings',
-        component: SettingsComponent
-    },
-                ]
+                {
+                    path: 'home',
+                    component: HomeComponent
+                },
+                {
+                    path: 'profile',
+                    component: ProfileComponent
+                },
+                {
+                    path: 'messages',
+                    component: MessagesComponent
+                },
+                {
+                    path: 'settings',
+                    component: SettingsComponent
+                },
+            ]
         },
         {
             path: 'login',
+            component: LoginComponent
+        },
+        {
+            path: '**',
             component: LoginComponent
         }
     ];
