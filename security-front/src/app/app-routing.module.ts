@@ -9,12 +9,14 @@ import {HomeComponent} from "./page/home/home.component";
 import {ProfileComponent} from "./page/profile/profile.component";
 import {MessagesComponent} from "./page/messages/messages.component";
 import {SettingsComponent} from "./page/settings/settings.component";
+import {LoginGuard} from "./auth/login.guard";
 
 const appRoutes: Routes =
     [
         {
             path: '',
             component: IndexComponent,
+            canActivate:[LoginGuard],
             children: [
     { path: 'home',
         component: HomeComponent

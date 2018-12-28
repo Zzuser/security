@@ -4,8 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 
-import {LoginService} from "./service/login.service";
-import {ModelService} from "./model/model.service";
+import {AuthService} from "./auth/Auth.service";
 import {httpInterceptorProviders} from "./http-interceptors";
 
 
@@ -39,8 +38,7 @@ import { SettingsComponent } from './page/settings/settings.component';
         FormsModule,
     ],
     providers: [
-        LoginService,
-        ModelService,
+        AuthService,
         httpInterceptorProviders
     ],
     bootstrap: [AppComponent]

@@ -2,9 +2,9 @@ package com.zzuser.securitydemo.controller;
 
 import com.zzuser.securitydemo.domain.User;
 import com.zzuser.securitydemo.vo.JsonResult;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,10 +19,10 @@ public class UserController {
     @Resource
     UserDetailsService userDetailsService;
 
-    @GetMapping("/{username}")
-    public JsonResult findUserByName(@PathVariable String username){
-        return JsonResult.ok(userDetailsService.loadUserByUsername(username));
-
+    @GetMapping
+    public JsonResult findUserByName(Authentication authentication){
+        User principal = (User) authentication.getPrincipal();
+        return JsonResult.ok(principal);
     }
 
 }
