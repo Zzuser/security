@@ -6,6 +6,7 @@ import {FormsModule} from "@angular/forms";
 
 import {AuthService} from "./auth/Auth.service";
 import {httpInterceptorProviders} from "./http-interceptors";
+import {IndexService} from "./service/index.service";
 
 
 import {AppComponent} from './app.component';
@@ -39,7 +40,8 @@ import { SettingsComponent } from './page/settings/settings.component';
     ],
     providers: [
         AuthService,
-        httpInterceptorProviders
+        httpInterceptorProviders,
+        IndexService
     ],
     bootstrap: [AppComponent]
 })

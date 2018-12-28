@@ -1,5 +1,6 @@
 package com.zzuser.securitydemo.controller;
 
+import com.zzuser.securitydemo.vo.JsonResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,14 +20,14 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/user")
-    public String user() {
-        return "user";
+    @RequestMapping("/user/test")
+    public JsonResult user() {
+        return JsonResult.ok("/user,具有ROLE_USER可以访问");
     }
 
     @RequestMapping("/admin")
-    public String admin() {
-        return "admin";
+    public JsonResult admin() {
+        return JsonResult.ok("/admin,具有ROLE_ADMIN可以访问");
     }
 
 

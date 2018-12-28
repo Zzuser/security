@@ -32,6 +32,7 @@ export class AuthService {
             .subscribe(res => {
                 document.body.style.backgroundImage = "url(../../assets/img/loginbg.jpg)";
                 sessionStorage.clear()
+                this.router.navigateByUrl('login')
             })
     }
 
