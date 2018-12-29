@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface RoleRepository extends JpaRepository<Role, String> {
     /**
      * 根据id查找角色
+     *
      * @param id ID
      * @return
      */
@@ -19,6 +20,7 @@ public interface RoleRepository extends JpaRepository<Role, String> {
 
     /**
      * 根据名称查找角色
+     *
      * @param name 名称
      * @return
      */

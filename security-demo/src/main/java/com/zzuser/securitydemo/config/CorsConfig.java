@@ -20,6 +20,9 @@ public class CorsConfig extends WebMvcConfigurationSupport {
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.setAllowCredentials(true);
+        //默认的跨域请求不会发送cookie等用户认证凭据
+        //必须前端设置withCredentials=true且后端设置AllowCredentials(true)
+        //才能使cookie+session认证生效;
         corsConfiguration.addExposedHeader("Authorization");
         return corsConfiguration;
     }

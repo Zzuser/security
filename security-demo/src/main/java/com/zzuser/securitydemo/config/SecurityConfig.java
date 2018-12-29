@@ -33,6 +33,7 @@ import java.io.PrintWriter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Resource
     UserDetailsService userDetailsService;
     @Resource
@@ -41,33 +42,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .successHandler(successHandler())
-                .failureHandler(failureHandler())
+                .formLogin()//表单验证，为了简单就不搞token验证了
+                .loginProcessingUrl("/login")//处理登录请求的api
+                //因为表单验证方式默认是跳转页面，而我们前后分离不需要后端处理跳转
+                //所以自定义一个登录成功处理器，它只需要告诉我们登录结果就可以了
+                .successHandler(successHandler())//登录成功处理器
+                .failureHandler(failureHandler())//登录失败处理器
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()  //表单登录，permitAll()表示这个不需要验证 登录页面，登录失败页面
                 .and()
                 .logout()
-                .logoutSuccessHandler(logoutSuccessHandler())
-                .logoutUrl("/logout")
+                .logoutSuccessHandler(logoutSuccessHandler())//登出处理器
+                .logoutUrl("/logout")//登出api
                 .permitAll()
                 .and()
-                .authorizeRequests()
+                .authorizeRequests()//接下来进行鉴权拦截，有相应权限的才可以从接口中得到数据
                 .antMatchers("/").access("hasRole('ROLE_USER')")
                 .antMatchers("/user/**").access("hasRole('ROLE_USER')")
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and()
-                .cors()//新加入
+                .cors()//跨域设置
                 .and()
-                .csrf().disable();
+                .csrf()
+                .disable(); //关掉csrf防御
     }
 
+    /**
+     * 自定义登录成功处理器，成功返回一个带有成功信息的Json数据包装类
+     */
     private AuthenticationSuccessHandler successHandler() {
         return (request, response, authentication) -> {
-            System.out.println(authentication);
             response.setContentType("application/json;charset=utf-8");
             PrintWriter out = response.getWriter();
             JsonResult ok = JsonResult.ok("登录成功");
@@ -77,6 +82,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    /**
+     * 自定义登录失败处理器，成功返回一个带有失败信息的Json数据包装类
+     */
     private AuthenticationFailureHandler failureHandler() {
         return (request, response, authentication) -> {
             response.setContentType("application/json;charset=utf-8");
@@ -88,12 +96,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-    private LogoutSuccessHandler logoutSuccessHandler(){
+    /**
+     * 自定义登出成功处理器，清除登录信息且成功返回一个带有登出信息的Json数据包装类
+     */
+    private LogoutSuccessHandler logoutSuccessHandler() {
         return (request, response, authentication) -> {
-            System.out.println(authentication);
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            if (auth != null){
-                new SecurityContextLogoutHandler().logout(request, response, auth);
+            if (auth != null) {
+                new SecurityContextLogoutHandler().logout(request, response, auth);//清除登录认证信息
             }
             response.setContentType("application/json;charset=utf-8");
             PrintWriter out = response.getWriter();
@@ -106,14 +116,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder();//向spring注册一个密码加密器
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());//配置密码加密器
     }
 
+    //加密密码生成方法,生成自己想要的密码
     public static void main(String[] args) {
         BCryptPasswordEncoder e = new BCryptPasswordEncoder();
         String encode = e.encode("123456");

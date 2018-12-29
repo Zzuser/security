@@ -1,6 +1,5 @@
 package com.zzuser.securitydemo.service;
 
-import com.zzuser.securitydemo.domain.User;
 import com.zzuser.securitydemo.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
