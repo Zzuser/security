@@ -3,13 +3,26 @@ package com.zzuser.securitydemo.vo;
 import lombok.Data;
 
 /**
+ * Json数据统一包装类
  * @author zzhaoctr
  */
 @Data
 public class JsonResult {
+    /**
+     * 状态码
+     */
     private Integer code;
+    /**
+     * 状态文本
+     */
     private String status;
+    /**
+     * 消息
+     */
     private String msg;
+    /**
+     * 数据
+     */
     private Object data;
 
     private JsonResult(Integer code, String status, String msg, Object data) {
