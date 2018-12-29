@@ -17,7 +17,7 @@ public class JsonResult {
      */
     private String status;
     /**
-     * 消息
+     * 消 息
      */
     private String msg;
     /**
