@@ -19,6 +19,12 @@ public class UserController {
     @Resource
     UserDetailsService userDetailsService;
 
+    /**
+     * 获取登录用户信息
+     *
+     * @param authentication
+     * @return
+     */
     @GetMapping
     public JsonResult findUserByName(Authentication authentication){
         User principal = (User) authentication.getPrincipal();

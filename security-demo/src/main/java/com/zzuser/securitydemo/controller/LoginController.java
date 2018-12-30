@@ -15,11 +15,6 @@ public class LoginController {
         return "index";
     }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
-
     @RequestMapping("/user/test")
     public JsonResult user() {
         return JsonResult.ok("/user,具有ROLE_USER可以访问");
